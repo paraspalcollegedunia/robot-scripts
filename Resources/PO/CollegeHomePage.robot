@@ -1,14 +1,40 @@
 *** Settings ***
-Documentation  locators and methods of collegedunia homepage
+Documentation  locators and methods of college homepage
 Library  SeleniumLibrary
 
+
 *** Keywords ***
+#find shadow element here
+#    find shadow element
+
 load
-   go to  ${college_home_page_URL}
-   sleep  3s
-   click element  css:body > div.college_top_wrapper > div.container-fluid.wrapper-top > div > div.college_shortlist > a > svg > use
-#   click image  #icon-solid_heart
-   sleep  3s
+   [arguments]  ${testData}
+
+   go to  ${testData}[5]
+   ${leadType}=  get variable value  ${testData}
+
+#   ele=  driver.executeScript("return arguments[0].shadowRoot", element)
+#   driver=
+#   ${ele} =
+#   Run Keyword if  '${leadType}[6]' == 'shortlist'  click element  ${ele}
+   Run Keyword if  '${leadType}[6]' == 'Get Contact Details'  click element  //p[contains(text(),'Get Contact Details')]
+   Run Keyword if  '${leadType}[6]' == 'apply now'  click element  //a[@id='info_popup_true']
+   Run Keyword if  '${leadType}[6]' == 'download brochure'  click element  //body/div[12]/a[2]
+   sleep  2s
+
+
+#   go to  ${college_home_page_URL}
+#   sleep  3s
+#   click element  css:body > div.college_top_wrapper > div.container-fluid.wrapper-top > div > div.college_shortlist > a > svg > use
+#   sleep  3s
+#
+
+
+
+
+
+
+
 #Verfy Page Loaded
 #   wait until page contains  Have Plans To Study In USA?
 
